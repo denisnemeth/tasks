@@ -1,5 +1,6 @@
 package sk.itsovy.other;
 
+import java.util.Date;
 import java.util.Scanner;
 import java.util.Random;
 
@@ -144,29 +145,32 @@ public class RandomClass {
     public void example() {
         Random rnd=new Random();
         Scanner sc=new Scanner(System.in);
-
+        //Date date1=new Date();
         System.out.println();
         System.out.println("What's your name?");
         String name=sc.nextLine();
         System.out.println("Nice to meet you "+name+"!");
+        System.out.println("Here is a test for you. Try to solve all 10 examples.");
         System.out.println();
         int count=0;
-        int p=1;
+        int examples=1;
+        long startTime=System.currentTimeMillis();
+        //long startT=date1.getTime();
         for (int i=0; i<10; i++) {
             int a=rnd.nextInt(90)+10;
             int b=rnd.nextInt(90)+10;
             int c=0;
-            int m=rnd.nextInt(4);
-            String z="";
+            int chance=rnd.nextInt(4);
+            String symbol="";
 
-            switch(m) {
+            switch(chance) {
                 case 0:
-                case 1: z="+"; c=a+b; break;
-                case 2: z="-"; c=a-b; break;
-                case 3: z="*"; c=a*b; break;
+                case 1: symbol="+"; c=a+b; break;
+                case 2: symbol="-"; c=a-b; break;
+                case 3: symbol="*"; c=a*b; break;
             }
 
-            System.out.print(p+") "+a+z+b+"=");
+            System.out.print(examples+") "+a+symbol+b+"=");
             int answer=sc.nextInt();
 
             if (c==answer) {
@@ -175,10 +179,21 @@ public class RandomClass {
             } else {
                 System.out.println("Incorrect!");
             }
-            p++;
+            System.out.println();
+            examples++;
         }
+        long stopTime=System.currentTimeMillis();
+        long totalTime=stopTime-startTime;
+        long seconds=totalTime/1000;
+        long minutes=seconds/60;
+        /*Date date2=new Date();
+        long stopT=date2.getTime();
+        long totalT=stopT-startT;
+        long sec=totalT/1000;
+        long min=sec/60;*/
         count=count*10;
-        System.out.println();
         System.out.println("Your accuracy is "+count+"%.");
+        System.out.println("The test took you "+minutes+" minutes and "+(seconds%60)+" seconds.");
+        //System.out.println("The test took you "+min+" minutes and "+(sec%60)+" seconds.");
     }
 }
